@@ -1,0 +1,24 @@
+    html,
+body {
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+
+.footer {
+    background: #911821;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid #911831;
+    bottom: 0;
+    margin: 0 10px 0 0;
+}
+
+.error-summary {
+    color: #a94442;
+    background: #fdf7f7;
+    border-left: 3px solid #eed3d7;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+}
