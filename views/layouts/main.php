@@ -27,6 +27,7 @@ AppAsset::register($this);
 <body>
 
 <?php $this->beginBody() ?>
+
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -38,7 +39,7 @@ AppAsset::register($this);
           </button>
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
-          
+          <?php if(!Yii::$app->user->isGuest){?>
           <ul class="nav navbar-nav">
             <!-- <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Menu <span class="caret"></span></a>
@@ -58,7 +59,6 @@ AppAsset::register($this);
             </li>
           </ul>
         
-        <?php if(!Yii::$app->user->isGuest){?>
           <ul class="nav navbar-nav navbar-right">
             <li><a target="_blank">Usuario</a></li>
             <li><a target="_blank">Accion</a></li>

@@ -3,7 +3,13 @@ body {
     padding-top: 5%;
     padding-bottom: 5%;
 }
+.login-box{
+    margin-left: 25%;
 
+}
+.center{
+    text-align: center;
+}
 
 .footer {
     background: #911821;
