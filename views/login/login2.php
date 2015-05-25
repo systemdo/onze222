@@ -1,3 +1,7 @@
+<?php
+use yii\helpers\Html;
+use yii\bootstrap\ActiveForm;
+?>
 <div class="row">
         
     <div class="row">
@@ -12,7 +16,15 @@
             <div class="alert alert-info">
                 Please login with your Username and Password.
             </div>
-            <form class="form-horizontal" action="login" method="post">
+                
+            <?php 
+                $form = ActiveForm::begin(
+                    [ 
+                        'options' => ['class' => 'form-horizontal']
+                    ]
+                ); 
+            ?>
+            
                 <fieldset>
                     <div class="input-group input-group-lg">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user red"></i></span>
@@ -35,7 +47,7 @@
                         <button type="submit" class="btn btn-primary">Login</button>
                     </p>
                 </fieldset>
-            </form>
+            <?php ActiveForm::end(); ?>
         </div>
         <!--/span-->
     </div><!--/row-->

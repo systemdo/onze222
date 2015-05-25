@@ -4,7 +4,7 @@ use yii\helpers\Url;
 ?>
     <p>
         <a href="<?php echo Url::to(['/responsible/create'])?>">
-              <button type="button" class="btn btn-primary">
+              <button type="button" class="btn btn-warning">
                   <span class="glyphicon glyphicon-plus"><?php echo Yii::t('app', 'create')?></span> 
               </button>
         </a>

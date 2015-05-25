@@ -21,7 +21,7 @@ use Yii;
  * @property Responsible $responsible
  * @property Grade $grade
  * @property Schedule $schedule
- * @property array $accoutings
+ * @property Accounting $accouting
  */
 class Student extends \yii\db\ActiveRecord
 {
@@ -101,6 +101,6 @@ class Student extends \yii\db\ActiveRecord
      */
     public function getAccouting()
     {
-        return $this->hasMany(Accouting::className(), ['id']);
+        return $this->hasMany(Accouting::className(), ['student_id' => 'id']);
     }
 }

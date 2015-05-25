@@ -2,26 +2,53 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-
+use yii\helpers\Url;    
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\repositories\AccoutingRepository */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Accoutings');
-$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="accouting-index">
+ <table class="table table-striped table-bordered bootstrap-datatable data_table responsive">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th><?php //e cho $students->attributeLabels()['name']?></th>
+          <th><?php //echo $student->attributeLabels()['grade_id']?></th>
+          <th><?php echo Yii::t('app', 'Accions')?></th>
+        </tr>
+      </thead>   
+      <tbody>
+    <?php 
+        $x = 1;
+        foreach ($students as $key => $student) {
+     ?>
+        <tr>
+          <td><?php echo $x ?></td>
+          <td><?php echo $student->name ?></td>
+          <td><?php //echo $model->grade->name ?></td>
+          <td>
+                  <a href="<?php echo Url::to(['student/view', 'id' => $student->id])?>">
+                    <button type="button" class="btn btn-info">
+                        <span class="glyphicon glyphicon-zoom-in"></span>
+                        View
+                     </button>
+                  </a>
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+                  <a class="btn btn-success" href="<?php echo Url::to(['student/update', 'id' => $student->id])?>">
+                   <span class="glyphicon glyphicon-cog"></span> 
+                  Edit
+                  </a>
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Create Accouting'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-    <pre>
-    <?php //var_dump($students)
-    	foreach ($students as $key => $student) {
-    		var_dump($student->getAccouting());
-    	}
+                  <a  class="btn btn-danger" data-confirm="Are you sure you want to delete this item?" data-method="post" data-pjax="0" href="<?php echo Url::to(['student/delete', 'id' => $student->id])?>">
+                  <span class="glyphicon glyphicon-remove"></span> 
+                  Delete
+                  </a>
+         </td>
+        </tr>
+    <?php    
+        $x++;
+    }
     ?>
-</div>
+    </tbody>
+    </table>
+
