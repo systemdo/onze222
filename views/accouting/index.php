@@ -27,21 +27,19 @@ use yii\helpers\Url;
           <td><?php echo $student->name ?></td>
           <td><?php //echo $model->grade->name ?></td>
           <td>
-                  <a href="<?php echo Url::to(['student/view', 'id' => $student->id])?>">
+                  <a href="<?php echo Url::to(['accouting/payment', 'student' => $student->id])?>">
                     <button type="button" class="btn btn-info">
-                        <span class="glyphicon glyphicon-zoom-in"></span>
-                        View
+                        <!-- <span class="glyphicon glyphicon-zoom-in"></span> -->
+                        To Pay
                      </button>
                   </a>
 
-                  <a class="btn btn-success" href="<?php echo Url::to(['student/update', 'id' => $student->id])?>">
-                   <span class="glyphicon glyphicon-cog"></span> 
-                  Edit
-                  </a>
+                  <a href="<?php echo Url::to(['student/update', 'id' => $student->id])?>">
+                  <button type="button" class="btn btn-warning">
+                   <!-- <span class="glyphicon glyphicon-cog"></span>  -->
+                  Payment
+                  </button>
 
-                  <a  class="btn btn-danger" data-confirm="Are you sure you want to delete this item?" data-method="post" data-pjax="0" href="<?php echo Url::to(['student/delete', 'id' => $student->id])?>">
-                  <span class="glyphicon glyphicon-remove"></span> 
-                  Delete
                   </a>
          </td>
         </tr>

@@ -72,4 +72,11 @@ class AccoutingRepository extends Accouting
     public function accoutingByStudent($student_id){
         // $query = "Select * from where student_id = "
     }
+    public function isStudentPaymentedThisMonth($student_id){
+        $query = "
+                    Select value from accouting 
+                    Where student_id = $student_id 
+                    And what_month=date('m')
+                ";
+    }
 }

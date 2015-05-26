@@ -80,10 +80,13 @@ class AccoutingController extends Controller
     public function actionPayment($student)
     {
         $model = new Accouting();
-        $student = Student::findOne($student); 
-        $month = array('01','02','03','04','05','06'); 
+        $student = Student::findOne($student);
+        $month = array(1 => "Jan", 2 => "Feb", 3 => "Mar", 4 => "Apr", 5 => "May", 6 => "Jun", 7 => "Jul", 8 => "Aug", 9 => "Sep", 10 => "Oct", 11 => "Nov", 12 => "Dec");
         // $model->setStudent($student)    ;
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->student_id = $student->id;
+            $model->date_create = date('Y-m-d',strtotime($model->date_create));
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [

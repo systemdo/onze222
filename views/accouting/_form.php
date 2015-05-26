@@ -20,7 +20,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'value')->textInput(['class' => 'form-control money']) ?>
 
-    <?= $form->field($model, 'student_id')->hiddenInput(['value' => $student->id])->label('') ?>
+    <?= $form->field($model, 'student_id')->hiddenInput(['value' => $student->id])->label('')?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
