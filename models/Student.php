@@ -1,6 +1,8 @@
 <?php
 
 namespace app\models;
+use app\models\repositories\AccoutingRepository;
+
 
 use Yii;
 
@@ -25,6 +27,7 @@ use Yii;
  */
 class Student extends \yii\db\ActiveRecord
 {
+
     /**
      * @inheritdoc
      */
@@ -103,4 +106,16 @@ class Student extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Accouting::className(), ['student_id' => 'id']);
     }
+
+    function isStudentpayedCurrentMonth(){
+        $accounting_respository = new AccoutingRepository;
+        // var_dump($accounting_respository->isPaymentedThisMonth($this->id));
+        if($accounting_respository->isPaymentedThisMonth($this->id))
+             return true;
+         else
+            return false;
+        return ;
+    }
+
+
 }

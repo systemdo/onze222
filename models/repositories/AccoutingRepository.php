@@ -6,6 +6,9 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Accouting;
+use yii\db\Query;
+use yii\db\Connection;
+
 
 /**
  * AccoutingRepository represents the model behind the search form about `app\models\Accouting`.
@@ -15,6 +18,7 @@ class AccoutingRepository extends Accouting
     /**
      * @inheritdoc
      */
+
     public function rules()
     {
         return [
@@ -72,11 +76,20 @@ class AccoutingRepository extends Accouting
     public function accoutingByStudent($student_id){
         // $query = "Select * from where student_id = "
     }
-    public function isStudentPaymentedThisMonth($student_id){
+    public function isPaymentedThisMonth($student_id){
+        $db = Yii::$app->db;
+
+
         $query = "
                     Select value from accouting 
-                    Where student_id = $student_id 
-                    And what_month=date('m')
+                    Where student_id = $student_id
+                    And what_month=MONTH(CURRENT_DATE())
+
                 ";
+
+        $model = $db->createCommand($query);
+        // var_dump($model);
+        return $result = $model->queryOne();
+        
     }
 }

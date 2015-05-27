@@ -13,7 +13,7 @@ use yii\helpers\Url;
         <tr>
           <th>#</th>
           <th><?php //e cho $students->attributeLabels()['name']?></th>
-          <th><?php //echo $student->attributeLabels()['grade_id']?></th>
+          <th>Status</th>
           <th><?php echo Yii::t('app', 'Accions')?></th>
         </tr>
       </thead>   
@@ -25,7 +25,21 @@ use yii\helpers\Url;
         <tr>
           <td><?php echo $x ?></td>
           <td><?php echo $student->name ?></td>
-          <td><?php //echo $model->grade->name ?></td>
+          <td>
+            <?php 
+                // var_dump($student->isStudentpayedCurrentMonth());
+                if($student->isStudentpayedCurrentMonth()){
+            ?>
+                    <span class="label-success label">Payed</span>
+            <?php 
+                }else{
+            ?>
+                <span class="label-primary label">To pay</span>
+            <?php
+                }
+            ?>
+
+          </td>
           <td>
                   <a href="<?php echo Url::to(['accouting/payment', 'student' => $student->id])?>">
                     <button type="button" class="btn btn-info">

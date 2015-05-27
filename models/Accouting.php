@@ -18,6 +18,7 @@ use Yii;
  */
 class Accouting extends \yii\db\ActiveRecord
 {
+    
     /**
      * @inheritdoc
      */
@@ -61,5 +62,9 @@ class Accouting extends \yii\db\ActiveRecord
     public function getStudent()
     {
         return $this->hasOne(Student::className(), ['id' => 'student_id']);
+    }
+
+    function isStudentpayedCurrentMonth(){
+        $this->isStudentPaymentedThisMonth($this->student->id);
     }
 }

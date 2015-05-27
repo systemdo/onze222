@@ -33,8 +33,8 @@ class AccoutingController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new AccoutingRepository();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        // $Accouting = new AccoutingRepository();
+        // $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         $students = Student::find()->All();
         $model = Accouting::find()->All();
@@ -81,6 +81,10 @@ class AccoutingController extends Controller
     {
         $model = new Accouting();
         $student = Student::findOne($student);
+        $accouting = new AccoutingRepository();
+        // echo'<pre>';
+        // var_dump($list =$accouting->isStudentPaymentedThisMonth($student->id));die();
+
         $month = array(1 => "Jan", 2 => "Feb", 3 => "Mar", 4 => "Apr", 5 => "May", 6 => "Jun", 7 => "Jul", 8 => "Aug", 9 => "Sep", 10 => "Oct", 11 => "Nov", 12 => "Dec");
         // $model->setStudent($student)    ;
         if ($model->load(Yii::$app->request->post())) {
