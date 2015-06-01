@@ -126,12 +126,16 @@ class Student extends \yii\db\ActiveRecord
         return $accounting_respository->getHistoryPaymentByYear($this->id,$year);
     }
 
-    function getPaymentByMonth($month = null){
+    function getPaymentByMonth($month = null, $year = null){
         $accounting_respository = new AccoutingRepository;
         if(empty($month)){
             $month = date('m');
         }
-        return $accounting_respository->getPaymentByMonth($this->id,$month);
+        if(empty($year)){
+            $year = date('Y');
+        }
+        
+        return $accounting_respository->getPaymentByMonth($this->id,$month, $year);
     }
 
 

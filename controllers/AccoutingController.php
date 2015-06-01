@@ -138,6 +138,7 @@ class AccoutingController extends Controller
 
         $months = array(1 => "Jan", 2 => "Feb", 3 => "Mar", 4 => "Apr", 5 => "May", 6 => "Jun", 7 => "Jul", 8 => "Aug", 9 => "Sep", 10 => "Oct", 11 => "Nov", 12 => "Dec");
 
+        
         if ($model->load(Yii::$app->request->post())) {
             
         } else {
@@ -147,6 +148,62 @@ class AccoutingController extends Controller
                 'months' => $months,
             ]);
         }
+    }
+
+    public function actionExcel($year)
+    {
+        $model = new Accouting();
+        $repository = new AccoutingRepository();
+        $students = Student::find()->orderBy('name')->all();
+
+        $months = array(1 => "Jan", 2 => "Feb", 3 => "Mar", 4 => "Apr", 5 => "May", 6 => "Jun", 7 => "Jul", 8 => "Aug", 9 => "Sep", 10 => "Oct", 11 => "Nov", 12 => "Dec");
+
+        $objPHPExcel = new \PHPExcel();
+        $sheet=0;
+        $columns = $objPHPExcel->getActiveSheet();
+            
+        $objPHPExcel->setActiveSheetIndex($sheet);
+ 
+        foreach (range('A', 'M') as $key => $value) {
+            if($key + 1 < 14){
+                 // var_dump($key."=".$value); 
+                 // var_dump($key+1); 
+                // $columns->getColumnDimension($value.$key+1)->setWidth(10);
+             }
+        }
+            die();
+        $objPHPExcel->getActiveSheet()->setTitle('Accounting')
+               
+         ->setCellValue('A1', 'Student');
+        
+        foreach (range('A', 'O') as $key => $value) {
+          if($key + 1 < 12)
+                var_dump($key."=".$value); die();
+                // $objPHPExcel->getActiveSheet()->setCellValue($value.$key+1, $month[$key+1]);
+        }
+         $objPHPExcel->getActiveSheet()->setCellValue('M1', 'value');
+         $row = 2;
+         foreach ($students as $key => $student){  
+            //var_dump($object);die();
+                    $objPHPExcel->getActiveSheet()->getStyle('A'.$row)->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
+                    $objPHPExcel->getActiveSheet()->setCellValue('A'.$row,$student->name);
+                    foreach (range('A', 'M') as $key => $value) {
+                        $objPHPExcel->getActiveSheet()->setCellValue($value.$row,$student->getPaymentByMonth($key,$year)); 
+                    }    
+                    $row++ ;
+            }
+           // $objPHPExcel->getActiveSheet()->getStyle()->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);//ALINEAR A LA DERECHA
+            header('Content-Type: application/vnd.ms-excel');
+            $filename = "Report_Onze222".date("d-m-Y-His").".xls";
+            header('Content-Disposition: attachment;filename='.$filename .' ');
+            header('Cache-Control: max-age=0');
+           
+            $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+            //$objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Txt');
+           
+            $objWriter->save('php://output');       
+           
+       
     }
 
     /**

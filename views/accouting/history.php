@@ -21,6 +21,14 @@ use yii\helpers\Url;
     </div>
 
     <?php ActiveForm::end(); */?>
+
+      <p>
+        <a href="<?php echo Url::to(['/accouting/excel/', 'year'=>'2015'])?>">
+              <button type="button" class="btn btn-primary">
+                  <span class="glyphicon glyphicon-plus"><?php echo Yii::t('app', 'create')?></span> 
+              </button>
+        </a>
+    </p>    
 <div class="col-lg-12">
     <div class="well bs-component">
       <div class="panel panel-primary">

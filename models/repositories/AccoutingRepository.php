@@ -90,7 +90,10 @@ class AccoutingRepository extends Accouting
         return $result = $model->queryOne();
         
     }
-    public function getPaymentByMonth($student_id,$month){
+    public function getPaymentByMonth($student_id,$month, $year = null){
+        if (empty($year))
+            $year = date('Y');
+
         $db = Yii::$app->db;
         $query = "
                     Select * from accouting a
@@ -98,7 +101,7 @@ class AccoutingRepository extends Accouting
                     on a.student_id=s.id
                     Where a.student_id = $student_id
                     And what_month = $month
-                    And YEAR(a.date_create) = YEAR(CURRENT_DATE())
+                    And YEAR(a.date_create) = YEAR($year)
                     group by MONTH($month)
                     Order BY MONTH($month)   
                 ";
