@@ -117,5 +117,22 @@ class Student extends \yii\db\ActiveRecord
         return ;
     }
 
+    function getAccountingByYear($year = null){
+        $accounting_respository = new AccoutingRepository;
+        if(empty($year)){
+            $year = date('Y');
+        } 
+        
+        return $accounting_respository->getHistoryPaymentByYear($this->id,$year);
+    }
+
+    function getPaymentByMonth($month = null){
+        $accounting_respository = new AccoutingRepository;
+        if(empty($month)){
+            $month = date('m');
+        }
+        return $accounting_respository->getPaymentByMonth($this->id,$month);
+    }
+
 
 }

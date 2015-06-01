@@ -35,23 +35,24 @@ use yii\helpers\Url;
                 }else{
             ?>
                 <span class="label-primary label">To pay</span>
+
+                <a href="<?php echo Url::to(['accouting/payment', 'student' => $student->id])?>">
+                    <button type="button" class="btn btn-info">
+                        <!-- <span class="glyphicon glyphicon-zoom-in"></span> -->
+                        To Pay
+                     </button>
+                  </a>
             <?php
                 }
             ?>
 
           </td>
           <td>
-                  <a href="<?php echo Url::to(['accouting/payment', 'student' => $student->id])?>">
-                    <button type="button" class="btn btn-info">
-                        <!-- <span class="glyphicon glyphicon-zoom-in"></span> -->
-                        To Pay
-                     </button>
-                  </a>
 
-                  <a href="<?php echo Url::to(['student/update', 'id' => $student->id])?>">
+                  <a href="<?php echo Url::to(['accouting/payments', 'student' => $student->id])?>">
                   <button type="button" class="btn btn-warning">
                    <!-- <span class="glyphicon glyphicon-cog"></span>  -->
-                  Payment
+                  Payments
                   </button>
 
                   </a>

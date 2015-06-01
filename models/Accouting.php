@@ -18,7 +18,9 @@ use Yii;
  */
 class Accouting extends \yii\db\ActiveRecord
 {
-    
+    public $begin_date;
+
+    public $end_date;
     /**
      * @inheritdoc
      */
@@ -47,10 +49,12 @@ class Accouting extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'student_id' => Yii::t('app', 'Student ID'),
-            'date_create' => Yii::t('app', 'Date Create'),
-            'what_month' => Yii::t('app', 'What Month'),
+            'id' => Yii::t('app', 'Fiscal Number'),
+            'student_id' => Yii::t('app', 'Student'),
+            'date_create' => Yii::t('app', 'Payment Day'),
+            'begin_date' => Yii::t('app', 'Begin Day'),
+            'end_date' => Yii::t('app', 'Day Day'),
+            'what_month' => Yii::t('app', 'Which Month'),
             'comment' => Yii::t('app', 'Comment'),
             'value' => Yii::t('app', 'Value'),
         ];

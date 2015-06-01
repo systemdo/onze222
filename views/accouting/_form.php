@@ -8,17 +8,28 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="accouting-form">
+<div class="col-lg-12">
+    <div class="well bs-component">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title"><?php echo $months[$month]?></h3>
+        </div>
+        <div class="panel-body">
+         <div class="rows">   
+            <div class="col-lg-12">
+                <p>Pagamento de: <?php echo $student->name?> </p>
+            </div>
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'date_create')->textInput(['class' => 'form-control date_system']) ?>
+    <?php //echo date('M');die();?>
+    <?php //$form->field($model, 'what_month')->dropDownList($month, ["options" => [ date('M')=>['selected'=>'true']]]) ?>
 
-    <?= $form->field($model, 'what_month')->dropDownList($month) ?>
+    <?= $form->field($model, 'value')->textInput(['class' => 'form-control money']) ?>
 
     <?= $form->field($model, 'comment')->textarea(['maxlength' => 500]) ?>
 
-    <?= $form->field($model, 'value')->textInput(['class' => 'form-control money']) ?>
+    <?= $form->field($model, 'date_create')->textInput(['class' => 'form-control date_system']) ?>
 
     <?= $form->field($model, 'student_id')->hiddenInput(['value' => $student->id])->label('')?>
 
@@ -27,5 +38,8 @@ use yii\widgets\ActiveForm;
     </div>
 
     <?php ActiveForm::end(); ?>
-
+    </div>
+</div>
+</div>
+</div>
 </div>
