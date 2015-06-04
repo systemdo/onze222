@@ -1,13 +1,22 @@
 $(document).ready(function(){
 	$('.date_system').datepicker({
-		"dateFormat": "dd-mm-yy", 
+		"dateFormat": "dd-mm-yy",
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "c-30:c"
+
+ 
 	});
 	      
 
 	
-	$(".money").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: false});
-
-	$(".days").mask("99");
+	$(".money").maskMoney({
+        prefix:'R$ ', 
+        allowNegative: true, 
+        thousands:'.', 
+        decimal:',', 
+        affixesStay: false
+    });
 
 	$(".cpf").mask("999.999.999-99");
 

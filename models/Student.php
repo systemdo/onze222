@@ -44,11 +44,11 @@ class Student extends \yii\db\ActiveRecord
         return [
             [['name', 'birthday', 'grade_id', 'schedule_id'], 'required'],
             [['responsible_id', 'payment_day'], 'integer'],
-            [['birthday'], 'safe'],
+            [['birthday', 'gender', 'value'], 'safe'],
             [['comment'], 'string'],
-            [['value'], 'number', 'numberPattern' => '/^\s*[-+]?[0-9]*[.,]?[0-9]+([eE][-+]?[0-9]+)?\s*$/'],
+            // [['value'], 'number', 'numberPattern' => '/^\s*[-+]?[0-9]*[.,]?[0-9]+([eE][-+]?[0-9]+)?\s*$/'],
             [['name'], 'string', 'max' => 150],
-            [['gender'], 'string', 'max' => 8]
+            // [['gender'], 'string', 'max' => 17]
         ];
     }
 
@@ -136,6 +136,15 @@ class Student extends \yii\db\ActiveRecord
         }
         
         return $accounting_respository->getPaymentByMonth($this->id,$month, $year);
+    }
+
+    function getTotalPaymentByStudentByYear($year= null){
+        $accounting_respository = new AccoutingRepository;
+        if(empty($year)){
+            $year = date('Y');
+        }
+         return $accounting_respository->getTotalPaymentByStudentByYear($this->id,$year);
+
     }
 
 

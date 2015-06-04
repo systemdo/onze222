@@ -164,32 +164,50 @@ class AccoutingController extends Controller
             
         $objPHPExcel->setActiveSheetIndex($sheet);
  
-        foreach (range('A', 'M') as $key => $value) {
+        foreach (range('A', 'N') as $key => $value) {
             if($key + 1 < 14){
-                 // var_dump($key."=".$value); 
-                 // var_dump($key+1); 
-                // $columns->getColumnDimension($value.$key+1)->setWidth(10);
+                $columns->getColumnDimension($value)->setWidth(10);
              }
         }
-            die();
+            
         $objPHPExcel->getActiveSheet()->setTitle('Accounting')
                
          ->setCellValue('A1', 'Student');
         
-        foreach (range('A', 'O') as $key => $value) {
-          if($key + 1 < 12)
-                var_dump($key."=".$value); die();
-                // $objPHPExcel->getActiveSheet()->setCellValue($value.$key+1, $month[$key+1]);
+        foreach (range('B', 'M') as $key => $value) {
+          if($key < 12){
+                // var_dump($key."=".$value); die();
+                $objPHPExcel->getActiveSheet()->setCellValue($value."1", $months[$key+1]);
+            }
         }
-         $objPHPExcel->getActiveSheet()->setCellValue('M1', 'value');
+         $objPHPExcel->getActiveSheet()->setCellValue('N1', 'Total');
+         
+
          $row = 2;
+         // echo '<pre>';
          foreach ($students as $key => $student){  
             //var_dump($object);die();
                     $objPHPExcel->getActiveSheet()->getStyle('A'.$row)->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
                     $objPHPExcel->getActiveSheet()->setCellValue('A'.$row,$student->name);
-                    foreach (range('A', 'M') as $key => $value) {
-                        $objPHPExcel->getActiveSheet()->setCellValue($value.$row,$student->getPaymentByMonth($key,$year)); 
-                    }    
+                    foreach (range('B', 'M') as $key => $value) {
+                        if($key < 12){
+                            // var_dump($student->getPaymentByMonth($key+1,$year));
+                            $amount = $student->getPaymentByMonth($key+1,$year)['value'];
+
+                            if(!$amount)
+                                $amount = "00,00";
+
+                        $objPHPExcel->getActiveSheet()->setCellValue($value.$row,$amount); 
+                    }
+
+                        $total = $student->getTotalPaymentByStudentByYear($year)['total'];
+                        // var_dump($total);
+                        if(!$total)
+                            $total = "00,00";
+
+                        $objPHPExcel->getActiveSheet()->setCellValue('N'.$row,$total);
+                        
+                    }
                     $row++ ;
             }
            // $objPHPExcel->getActiveSheet()->getStyle()->getAlignment()->setHorizontal(\PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);//ALINEAR A LA DERECHA

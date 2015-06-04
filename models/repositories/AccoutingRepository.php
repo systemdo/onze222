@@ -92,7 +92,8 @@ class AccoutingRepository extends Accouting
     }
     public function getPaymentByMonth($student_id,$month, $year = null){
         if (empty($year))
-            $year = date('Y');
+              $year = date('Y');
+
 
         $db = Yii::$app->db;
         $query = "
@@ -101,12 +102,29 @@ class AccoutingRepository extends Accouting
                     on a.student_id=s.id
                     Where a.student_id = $student_id
                     And what_month = $month
-                    And YEAR(a.date_create) = YEAR($year)
-                    group by MONTH($month)
-                    Order BY MONTH($month)   
+                    And YEAR(a.date_create) = $year
                 ";
         $model = $db->createCommand($query);
-        // var_dump($model);
+        
+        return $result = $model->queryOne();
+        
+    }
+    public function getTotalPaymentByStudentByYear($student_id, $year = null){
+        if (empty($year))
+              $year = date('Y');
+
+
+        $db = Yii::$app->db;
+        $query = "
+                    Select sum(a.value) as total from accouting a
+                    Inner Join student s
+                    on a.student_id=s.id
+                    Where a.student_id = $student_id
+                    And YEAR(a.date_create) = $year
+                ";
+
+        $model = $db->createCommand($query);
+
         return $result = $model->queryOne();
         
     }
@@ -123,7 +141,6 @@ class AccoutingRepository extends Accouting
                     Order BY MONTH(a.what_month)   
                 ";
         $model = $db->createCommand($query);
-        // var_dump($model);
         return $result = $model->queryAll();        
 
     }

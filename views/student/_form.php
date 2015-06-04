@@ -7,6 +7,10 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\Student */
 /* @var $form yii\widgets\ActiveForm */
+$days = array(1 => 1);
+foreach (range(2, 30) as $key => $value) {
+            $days[$value] = $value;
+         }
 ?>
 
 <div class="student-form">
@@ -30,7 +34,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'gender')->dropDownList($model->genders()) ?>
 
-    <?= $form->field($model, 'payment_day')->textInput(['class' => 'days form-control']) ?>
+    <?= $form->field($model, 'payment_day')->dropDownList($days) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

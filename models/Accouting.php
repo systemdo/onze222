@@ -38,7 +38,7 @@ class Accouting extends \yii\db\ActiveRecord
             [['what_month','date_create', 'value'], 'required'],
             [['what_month'], 'integer'],
             [['date_create'], 'safe'],
-            [['value'], 'number', 'numberPattern' => '/^\s*[-+]?[0-9]*[.,]?[0-9]+([eE][-+]?[0-9]+)?\s*$/'],
+            // [['value'], 'number', 'numberPattern' => '/^\s*[-+]?[0-9]*[.,]?[0-9]+([eE][-+]?[0-9]+)?\s*$/'],
             [['comment'], 'string', 'max' => 500]
         ];
     }

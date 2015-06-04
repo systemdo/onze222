@@ -106,11 +106,17 @@ class StudentController extends Controller
         $responsible = new Responsible();
         $schedule = new Schedule();
         $grade = new Grade();
-       
+        
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                // echo '<pre>';
+                // var_dump(Yii::$app->request->post());
+                //var_dump($model->value);
+                $model->value = $this->formatMoney($model->value);
+
                 $model->birthday = date('Y-m-d',strtotime($model->birthday));
                 $model->save();
+                 // var_dump($model->value); //die();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('_form', [
@@ -150,5 +156,14 @@ class StudentController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    function formatMoney($money){
+
+        $money = str_replace('.','',$money);
+
+        $money = str_replace(',','.',$money);
+
+        return $money;
     }
 }
