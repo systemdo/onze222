@@ -55,22 +55,24 @@ class LoginController extends Controller
 
     public function actionIndex()
     {
+        
         return $this->actionLogin();
     }
 
     public function actionLogin()
-    {
+    {   
         if (!\Yii::$app->user->isGuest) {
             return $this->goHome();
         }
 
+
         $model = new LoginForm();
-        // var_dump(Yii::$app->request->post());die();
-        var_dump($model->load(Yii::$app->request->post()));die();
+
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+
             return $this->goBack();
         } else {
-            return $this->render('login2', [
+            return $this->render('login', [
                 'model' => $model,
             ]);
         }

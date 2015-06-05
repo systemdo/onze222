@@ -71,4 +71,18 @@ class StudentRepository extends Student
 
         return $dataProvider;
     }
+    public function getBirthDay($day = null ){
+        if (empty($day))
+             $day = date('Y-m-d');
+
+        $db = Yii::$app->db;
+    
+        $query = "
+                    Select * from student
+                    Where birthday = '$day'
+                ";
+        $model = $db->createCommand($query);
+        // var_dump($model);
+        return $result = $model->queryAll();        
+    } 
 }

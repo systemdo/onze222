@@ -14,10 +14,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
 
-/**
- * StudentController implements the CRUD actions for Student model.
- */
-class StudentController extends Controller
+class DashboardController extends Controller
 {
     public function behaviors()
     {
@@ -46,10 +43,12 @@ class StudentController extends Controller
      */
     public function actionIndex()
     {
-        $models = StudentRepository::find()->all();
+
+        $stu_repo = new StudentRepository();
+        $birth_day_today = $stu_repo->getBirthDay();
         return $this->render('index', [
-            'models' =>$models,
-            'student' => new Student(),
+            // 'models' =>$models,
+            'birth_day_today' => $birth_day_today,
 
         ]);
     }

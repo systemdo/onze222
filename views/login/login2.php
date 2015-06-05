@@ -28,13 +28,13 @@ use yii\bootstrap\ActiveForm;
                 <fieldset>
                     <div class="input-group input-group-lg">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user red"></i></span>
-                        <input type="email" class="form-control" name="email" placeholder="email">
+                        <input type="email" class="form-control" name="LoginForm[email]" placeholder="email">
                     </div>
                     <div class="clearfix"></div><br>
 
                     <div class="input-group input-group-lg">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock red"></i></span>
-                        <input type="password" name="password" class="form-control" placeholder="Password">
+                        <input type="password" name="loginform-password" class="form-control" placeholder="Password">
                     </div>
                     <br/>
                     <!-- <div class="clearfix"></div>

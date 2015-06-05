@@ -116,7 +116,8 @@ class AccoutingRepository extends Accouting
 
         $db = Yii::$app->db;
         $query = "
-                    Select sum(a.value) as total from accouting a
+                    Select sum(a.value) as total 
+                    from accouting a
                     Inner Join student s
                     on a.student_id=s.id
                     Where a.student_id = $student_id

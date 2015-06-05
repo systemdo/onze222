@@ -39,7 +39,10 @@ AppAsset::register($this);
           </button>
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
-          <?php if(!Yii::$app->user->isGuest){?>
+          <?php
+          // echo'<pre>';
+          // var_dump(Yii::$app->user->identity);
+           if(!Yii::$app->user->isGuest){?>
           <ul class="nav navbar-nav">
             <!-- <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Menu <span class="caret"></span></a>
@@ -60,8 +63,8 @@ AppAsset::register($this);
           </ul>
         
           <ul class="nav navbar-nav navbar-right">
-            <li><a target="_blank">Usuario</a></li>
-            <li><a target="_blank">Accion</a></li>
+            <li><?php echo Yii::$app->user->identity->username?></li>
+            <li><a href="login/logout">logout</a></li>
           </ul>
          <?php } ?>
         </div>
